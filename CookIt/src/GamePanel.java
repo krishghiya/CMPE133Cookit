@@ -57,7 +57,7 @@ public class GamePanel extends JPanel {
 		
 		
 		DefaultListModel<String> actual_order = new DefaultListModel<>();
-		BufferedReader br = new BufferedReader(new FileReader("./src/images/recipes/"+"boiled egg.txt"));  
+		BufferedReader br = new BufferedReader(new FileReader("./src/images/recipes/"+recipeName));  
 		String line = null;  
 		while ((line = br.readLine()) != null)  
 		{  
@@ -93,9 +93,7 @@ public class GamePanel extends JPanel {
 			ingredients.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if(item.equals("None")) {
-						item = (String) ingredients.getSelectedValue();
-					}
+					item = (String) ingredients.getSelectedValue();
 				}
 			});
 			JScrollPane ing_scroll = new JScrollPane(ingredients);
@@ -124,8 +122,11 @@ public class GamePanel extends JPanel {
 						}
 						
 						if(win) {
-							System.out.println("You win!!");
-							switchPanels(MainFrame.MainMenuPanel);
+							dialogBox("You Win!");
+							
+						}
+						else {
+							dialogBox("You Lose!");
 						}
 					}
 				}
@@ -156,5 +157,11 @@ public class GamePanel extends JPanel {
 		Back.setBorder(null);
 		Back.setBounds(1300, 700, 271, 82);
 		add(Back);
+	}
+	
+	private void dialogBox(String message) {
+		JOptionPane.showOptionDialog(this, 
+				message, "Game finished", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(), new String[] {"Ok"}, null);
+		switchPanels(MainFrame.MainMenuPanel);
 	}
 }
