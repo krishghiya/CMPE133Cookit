@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
 	 * @throws IOException
 	 */
 	public GamePanel(String recipeName) throws IOException {
-
+		
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(1600, 900));
 		setLayout(null);
@@ -44,7 +44,7 @@ public class GamePanel extends JPanel {
 		BufferedImage temp = null;
 		final_dish.setBounds(50, 35, 315, 250);
 		try {
-		    temp = ImageIO.read(new File("./src/images/final dish/"+recipeName.replace(".txt", ".png")));
+		    temp = ImageIO.read(new File("./src/images/final dish_full/"+recipeName.replace(".txt", ".png")));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
