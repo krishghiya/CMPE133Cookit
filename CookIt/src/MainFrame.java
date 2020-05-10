@@ -308,12 +308,12 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 1) {
-					File f = new File("./src/images/recipes");
+					File f = new File("./src/images/easy_recipes");
 					Random r = new Random();
 					String[] fileList = f.list();
 					int index = r.nextInt(fileList.length);
 					try {
-						switchPanels(new GamePanel(fileList[index]));
+						switchPanels(new GamePanel(fileList[index], "easy"));
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -329,6 +329,22 @@ public class MainFrame extends JFrame {
 		optionPanel.add(easy);
 
 		JButton medium = new JButton("Medium");
+		medium.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 1) {
+					File f = new File("./src/images/medium_recipes");
+					Random r = new Random();
+					String[] fileList = f.list();
+					int index = r.nextInt(fileList.length);
+					try {
+						switchPanels(new GamePanel(fileList[index], "medium"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		medium.setBackground(Color.black);
 		medium.setForeground(new Color(255, 255, 153));
 		medium.setFont(normalFont);
@@ -338,6 +354,22 @@ public class MainFrame extends JFrame {
 		optionPanel.add(medium);
 
 		JButton hard = new JButton("Hard");
+		hard.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 1) {
+					File f = new File("./src/images/hard_recipes");
+					Random r = new Random();
+					String[] fileList = f.list();
+					int index = r.nextInt(fileList.length);
+					try {
+						switchPanels(new GamePanel(fileList[index], "hard"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		hard.setBackground(Color.black);
 		hard.setForeground(new Color(255, 153, 153));
 		hard.setFont(normalFont);
@@ -361,7 +393,7 @@ public class MainFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
-
+			
 			switchPanels(optionPanel);
 		}
 

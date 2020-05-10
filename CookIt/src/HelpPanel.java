@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class HelpPanel extends JPanel {
@@ -31,8 +32,6 @@ public class HelpPanel extends JPanel {
 		setBackground(Color.BLACK);
 		setLayout(null);
 		
-		
-		
 		JLabel Title = new JLabel("Help");
 		Title.setForeground(Color.ORANGE);
 		//Title.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -42,8 +41,11 @@ public class HelpPanel extends JPanel {
 		Title.setFont(titleFont);
 		
 		
-		JLabel optionArea = new JLabel("How to Play");
-		optionArea.setBounds(100,300,600,250);
+		JTextArea optionArea = new JTextArea("How to Play - Guess the recipe! Click on item then click on the pot. "
+				+ "Once you reach the required number of ingredients you either win or lose depending on whether you selected"
+				+ " the correct order");
+		optionArea.setLineWrap(true);
+		optionArea.setBounds(100,300,1400,500);
 		optionArea.setBackground(Color.black);
 		optionArea.setForeground(Color.white);
 		optionArea.setFont(normalFont);

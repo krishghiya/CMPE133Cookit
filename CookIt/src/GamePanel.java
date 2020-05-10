@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
 	 * 
 	 * @throws IOException
 	 */
-	public GamePanel(String recipeName) throws IOException {
+	public GamePanel(String recipeName, String difficulty) throws IOException {
 		
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(1600, 900));
@@ -57,7 +57,7 @@ public class GamePanel extends JPanel {
 		
 		
 		DefaultListModel<String> actual_order = new DefaultListModel<>();
-		BufferedReader br = new BufferedReader(new FileReader("./src/images/recipes/"+recipeName));  
+		BufferedReader br = new BufferedReader(new FileReader("./src/images/"+difficulty+"_recipes/"+recipeName));  
 		String line = null;  
 		while ((line = br.readLine()) != null)  
 		{  
@@ -77,7 +77,6 @@ public class GamePanel extends JPanel {
 		instructions.setLayoutOrientation(JList.VERTICAL);
 		instructions.setCellRenderer(new FoodListRenderer());
 		JScrollPane ins_scroll = new JScrollPane(instructions);
-//		instructions.setBackground(Color.CYAN);
 		ins_scroll.setBounds(50,  300, 325, 500);
 		add(ins_scroll);
 		
@@ -97,7 +96,6 @@ public class GamePanel extends JPanel {
 				}
 			});
 			JScrollPane ing_scroll = new JScrollPane(ingredients);
-//			ingredients.setBackground(Color.CYAN);
 			tabbedPane.add(title, ing_scroll);
 		}
 		
@@ -122,12 +120,13 @@ public class GamePanel extends JPanel {
 						}
 						
 						if(win) {
-							dialogBox("You Win!");
+							dialogBox("You Win!", "Game finished");
 							
 						}
 						else {
-							dialogBox("You Lose!");
+							dialogBox("You Lose!", "Game finished");
 						}
+						switchPanels(MainFrame.MainMenuPanel);
 					}
 				}
 			}
@@ -157,11 +156,26 @@ public class GamePanel extends JPanel {
 		Back.setBorder(null);
 		Back.setBounds(1300, 700, 271, 82);
 		add(Back);
+		
+		JButton Hint = new JButton("Hint");
+		Hint.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 1) {
+					dialogBox(actual_order.elementAt(selectedOrder.getSize()), "Here's a hint");
+				}
+			}
+		});
+		Hint.setBackground(Color.black);
+		Hint.setForeground(Color.white); 
+		Hint.setFont(normalFont);
+		Hint.setBorder(null);
+		Hint.setBounds(1100, 700, 271, 82);
+		add(Hint);
 	}
 	
-	private void dialogBox(String message) {
+	private void dialogBox(String message, String title) {
 		JOptionPane.showOptionDialog(this, 
-				message, "Game finished", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(), new String[] {"Ok"}, null);
-		switchPanels(MainFrame.MainMenuPanel);
+				message, title, JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(), new String[] {"Ok"}, null);
 	}
 }
