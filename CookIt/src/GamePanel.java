@@ -39,10 +39,15 @@ public class GamePanel extends JPanel {
 		setPreferredSize(new Dimension(1600, 900));
 		setLayout(null);
 		
-		JLabel final_dish = new JLabel(recipeName.split(".txt")[0].toUpperCase());
-		final_dish.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		JLabel title_label = new JLabel(recipeName.split(".txt")[0]);
+		title_label.setForeground(Color.WHITE);
+		title_label.setFont(normalFont);
+		title_label.setBounds(100, 10, 315, 50);
+		add(title_label);
+		
+		JLabel final_dish = new JLabel();
 		BufferedImage temp = null;
-		final_dish.setBounds(50, 35, 315, 250);
+		final_dish.setBounds(50, 40, 315, 225);
 		try {
 		    temp = ImageIO.read(new File("./src/images/final dish_full/"+recipeName.replace(".txt", ".png")));
 		} catch (IOException e) {
@@ -51,8 +56,6 @@ public class GamePanel extends JPanel {
 		Image temp_dimg = temp.getScaledInstance(final_dish.getWidth(), final_dish.getHeight(),
 		        Image.SCALE_SMOOTH);
 		final_dish.setIcon(new ImageIcon(temp_dimg));
-		final_dish.setHorizontalTextPosition(JLabel.CENTER);
-		final_dish.setVerticalTextPosition(JLabel.CENTER);
 		add(final_dish);
 		
 		
