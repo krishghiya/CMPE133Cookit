@@ -45,11 +45,12 @@ public class HelpPanel extends JPanel {
 				+ "Once you reach the required number of ingredients you either win or lose depending on whether you selected"
 				+ " the correct order");
 		optionArea.setLineWrap(true);
-		optionArea.setBounds(100,300,1400,500);
+		optionArea.setBounds(100,300,1400,380);
 		optionArea.setBackground(Color.black);
 		optionArea.setForeground(Color.white);
 		optionArea.setFont(normalFont);
-		//optionArea.setLineWrap(true);
+		optionArea.setWrapStyleWord(true);
+		optionArea.setLineWrap(true);
 		add(optionArea);
 		
 		
@@ -62,9 +63,9 @@ public class HelpPanel extends JPanel {
 				}
 			}
 		});
-		Back.setBackground(Color.black);
+		Back.setBackground(Color.BLACK);
 		Back.setForeground(Color.white); 
-		Back.setFont(normalFont);
+		Back.setFont(new Font("Times New Roman", Font.PLAIN, 50));
 		Back.setBorder(null);
 		Back.setBounds(650, 700, 271, 82);
 		add(Back);

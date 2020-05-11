@@ -1,6 +1,7 @@
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -41,17 +42,23 @@ public class RecipePanel extends JPanel {
 		setPreferredSize(new Dimension(1600, 900));
 		setBackground(Color.BLACK);
 		setLayout(null);
+		String[] recipe_types = new String[] {"easy_recipes", "medium_recipes", "hard_recipes"};
 		
-		JList info = new JList();
-		info.setLayoutOrientation(JList.VERTICAL);
-		info.setCellRenderer(new FoodListRenderer());
+		JTextArea info = new JTextArea();
+		info.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		info.setWrapStyleWord(true);
+		info.setLineWrap(true);
 		JScrollPane info_scroll = new JScrollPane (info);
-		info_scroll.setBounds(846, 246, 291, 341);
+		info_scroll.setBounds(846, 246, 500, 341);
 		add(info_scroll);
 		
-		File folder = new File("./src/images/recipes");
-		String[] recipes = folder.list();
-		JList recipeList = new JList(recipes);
+		ArrayList<String> recipes = new ArrayList<String>();
+		for(String r: recipe_types) {
+			File f = new File("./src/images/"+r);
+			for(String s: f.list()) recipes.add(s.split(".txt")[0]);
+		}
+		
+		JList recipeList = new JList(recipes.toArray());
 		recipeList.setLayoutOrientation(JList.VERTICAL);
 		recipeList.setCellRenderer(new FoodListRenderer(new String[] {"final dish"}));
 		recipeList.addMouseListener(new MouseAdapter() {
@@ -59,26 +66,24 @@ public class RecipePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 2) {
 					String recipe = (String) recipeList.getSelectedValue();
-					ArrayList<String> order = new ArrayList<>();
-					try {
-						BufferedReader br = new BufferedReader(new FileReader("./src/images/recipes/"+recipe));  
-						String line = null;  
-						while ((line = br.readLine()) != null)  
-						{  
-							if(line.equals("Game Order:")) {
-								String tempLine = null;
-								while ((tempLine = br.readLine()) != null) {
-									if(tempLine.trim().length() > 0)
-										order.add(tempLine+".png");
+					for(String r: recipe_types) {
+						try {
+							BufferedReader br = new BufferedReader(new FileReader("./src/images/"+r+"/"+recipe+".txt"));
+							String line = null;  
+							while ((line = br.readLine()) != null)  
+							{  
+								if(line.equals("Procedure:")) {
+									String tempLine = null;
+									while ((tempLine = br.readLine()).trim().length() > 0)
+											info.append(tempLine+"\n");
+									break;
 								}
-								break;
-							}
-						} 
+							} 
+						}
+						catch(Exception exc) {
+							continue;
+						}
 					}
-					catch(Exception exc) {
-						exc.printStackTrace();
-					}
-					info.setListData(order.toArray());
 				}
 			}
 		});

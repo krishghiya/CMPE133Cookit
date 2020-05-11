@@ -48,11 +48,11 @@ import javax.swing.JTextPane;
 
 public class MainFrame extends JFrame {
 
-	public static JPanel contentPane, MainMenuPanel, gameMenuPan, RecipePanel, GamePanel,HelpPanel;
+	public static JPanel contentPane, MainMenuPanel, gameMenuPan, RecipePanel, GamePanel,HelpPanel, optionPanel;
 	private JPanel titleNamePanel, pot, plate, grill, namePanel;
 	private JLabel titleNameLabel, nameLabel, potLabel, plateLabel, grillLabel;
 
-	private JPanel optionPanel, buttonMenuPanel;
+	private JPanel buttonMenuPanel;
 	// private JTextArea optionArea;
 
 	Font titleFont = new Font("Castellar", Font.PLAIN, 120);
@@ -116,7 +116,7 @@ public class MainFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		// MAINMENUPAN
 		MainMenuPanel = new JPanel();
 		//layeredPane.add(mainMenuPan);
@@ -162,16 +162,6 @@ public class MainFrame extends JFrame {
 		plateLabel.setBounds(200, 500, 600, 150);
 		plate.add(plateLabel);
 
-		// GRILL IMAGE
-		grill = new JPanel();
-		grill.setBounds(100, 480, 100, 150);
-		grill.setBackground(Color.orange);
-		// mainMenuPan.add(grill);
-
-		grillLabel = new JLabel("");
-		grillLabel.setIcon(new ImageIcon("./src/images/resources/grill.png"));
-		grillLabel.setBounds(200, 500, 600, 150);
-		// grill.add(grillLabel);
 
 		// CREATORS
 		namePanel = new JPanel();

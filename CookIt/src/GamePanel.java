@@ -121,12 +121,21 @@ public class GamePanel extends JPanel {
 						
 						if(win) {
 							dialogBox("You Win!", "Game finished");
-							
+							switchPanels(MainFrame.optionPanel);
 						}
 						else {
-							dialogBox("You Lose!", "Game finished");
+							int choice = JOptionPane.showOptionDialog(MainFrame.GamePanel, "You Lose!", "Required amount of ingredients reached!", 
+									JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(), new String[] {"Try Again", "Quit"}, 0);
+							
+							if(choice == 0) {
+								try {
+									MainFrame.GamePanel = new GamePanel(recipeName, difficulty);
+									switchPanels(MainFrame.GamePanel);
+								} catch (IOException e1) {
+								}
+							}
+							else switchPanels(MainFrame.optionPanel);
 						}
-						switchPanels(MainFrame.MainMenuPanel);
 					}
 				}
 			}
@@ -162,7 +171,7 @@ public class GamePanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 1) {
-					dialogBox(actual_order.elementAt(selectedOrder.getSize()), "Here's a hint");
+					dialogBox(actual_order.elementAt(selectedOrder.getSize()).split(".png")[0], "Here's a hint");
 				}
 			}
 		});
