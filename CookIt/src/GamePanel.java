@@ -35,16 +35,19 @@ public class GamePanel extends JPanel {
 	 */
 	public GamePanel(String recipeName, String difficulty) throws IOException {
 		
+		//Set yp Panel
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(1600, 900));
 		setLayout(null);
 		
+		//Display recipe name top left
 		JLabel title_label = new JLabel(recipeName.split(".txt")[0]);
 		title_label.setForeground(Color.WHITE);
 		title_label.setFont(normalFont);
 		title_label.setBounds(100, 10, 315, 50);
 		add(title_label);
 		
+		//Display completed dish image on top left
 		JLabel final_dish = new JLabel();
 		BufferedImage temp = null;
 		final_dish.setBounds(50, 40, 315, 225);
@@ -59,6 +62,7 @@ public class GamePanel extends JPanel {
 		add(final_dish);
 		
 		
+		//Get correct recipe order from file storage
 		DefaultListModel<String> actual_order = new DefaultListModel<>();
 		BufferedReader br = new BufferedReader(new FileReader("./src/images/"+difficulty+"_recipes/"+recipeName));  
 		String line = null;  
@@ -76,6 +80,7 @@ public class GamePanel extends JPanel {
 		
 		DefaultListModel<String> selectedOrder = new DefaultListModel<>();
 		
+		//Pane for selected ingredients on left side
 		JList instructions = new JList(selectedOrder);
 		instructions.setLayoutOrientation(JList.VERTICAL);
 		instructions.setCellRenderer(new FoodListRenderer());
@@ -83,6 +88,7 @@ public class GamePanel extends JPanel {
 		ins_scroll.setBounds(50,  300, 325, 500);
 		add(ins_scroll);
 		
+		//Pane to display various ingredients and tools at top
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(375, 35, 1100, 250);
 
@@ -104,6 +110,8 @@ public class GamePanel extends JPanel {
 		
 		add(tabbedPane);
 
+		//Center placeholder image for start of game
+		//Also includes game end decision popup
 		JLabel Pot = new JLabel("Pot");
 		Pot.addMouseListener(new MouseAdapter() {
 			@Override
@@ -153,6 +161,7 @@ public class GamePanel extends JPanel {
 		Pot.setIcon(new ImageIcon(dimg));
 		add(Pot);
 		
+		//Back button
 		JButton Back = new JButton("Quit");
 		Back.addMouseListener(new MouseAdapter() {
 			@Override
@@ -169,6 +178,7 @@ public class GamePanel extends JPanel {
 		Back.setBounds(1300, 700, 271, 82);
 		add(Back);
 		
+		//Hint button
 		JButton Hint = new JButton("Hint");
 		Hint.addMouseListener(new MouseAdapter() {
 			@Override

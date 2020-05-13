@@ -271,6 +271,7 @@ public class MainFrame extends JFrame {
 
 	public void optionGameScreen() throws IOException {
 
+		//Set up
 		layeredPane_1 = new JLayeredPane();
 		layeredPane_1.setBounds(0, 0, 1582, 853);
 		contentPane.add(layeredPane_1);
@@ -292,7 +293,7 @@ public class MainFrame extends JFrame {
 		optionPanel.add(buttonMenuPanel);
 		titleNameLabel.setFont(titleFont2);
 		
-		
+		//Easy difficulty button
 		JButton easy = new JButton("Easy");
 		easy.addMouseListener(new MouseAdapter() {
 			@Override
@@ -318,6 +319,7 @@ public class MainFrame extends JFrame {
 		easy.setBounds(578, 220, 271, 82);
 		optionPanel.add(easy);
 
+		//Medium difficulty button
 		JButton medium = new JButton("Medium");
 		medium.addMouseListener(new MouseAdapter() {
 			@Override
@@ -343,6 +345,7 @@ public class MainFrame extends JFrame {
 		medium.setBounds(588, 308, 271, 82);
 		optionPanel.add(medium);
 
+		//Hard difficulty button
 		JButton hard = new JButton("Hard");
 		hard.addMouseListener(new MouseAdapter() {
 			@Override
@@ -368,6 +371,7 @@ public class MainFrame extends JFrame {
 		hard.setBounds(578, 400, 271, 82);
 		optionPanel.add(hard);
 
+		//Back button
 		JButton back = new JButton("Back");
 		back.setBackground(Color.black);
 		back.setForeground(Color.white);

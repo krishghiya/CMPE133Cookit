@@ -24,6 +24,7 @@ public class FoodListRenderer extends DefaultListCellRenderer {
 			this.folders = folders.clone();
 		}
 
+		//Custom class to display images along with names in JList
 		@Override
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {

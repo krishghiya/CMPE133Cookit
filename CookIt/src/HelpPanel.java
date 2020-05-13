@@ -28,19 +28,20 @@ public class HelpPanel extends JPanel {
 	}
 	
 	public HelpPanel() {
+		//Set up
 		setPreferredSize(new Dimension(1600, 900));
 		setBackground(Color.BLACK);
 		setLayout(null);
 		
+		//Title
 		JLabel Title = new JLabel("Help");
 		Title.setForeground(Color.ORANGE);
-		//Title.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Title.setHorizontalAlignment(SwingConstants.CENTER);
 		Title.setBounds(598, 118, 400,87);
 		add(Title);
 		Title.setFont(titleFont);
 		
-		
+		//Help info
 		JTextArea optionArea = new JTextArea("How to Play - Guess the recipe! Click on item then click on the pot. "
 				+ "Once you reach the required number of ingredients you either win or lose depending on whether you selected"
 				+ " the correct order");
@@ -53,7 +54,7 @@ public class HelpPanel extends JPanel {
 		optionArea.setLineWrap(true);
 		add(optionArea);
 		
-		
+		//Back button
 		JButton Back = new JButton("Back");
 		Back.addMouseListener(new MouseAdapter() {
 			@Override

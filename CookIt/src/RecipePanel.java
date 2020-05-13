@@ -39,11 +39,14 @@ public class RecipePanel extends JPanel {
 	 * Create the panel.
 	 */
 	public RecipePanel() {
+		
+		//Set up
 		setPreferredSize(new Dimension(1600, 900));
 		setBackground(Color.BLACK);
 		setLayout(null);
 		String[] recipe_types = new String[] {"easy_recipes", "medium_recipes", "hard_recipes"};
 		
+		//Display steps
 		JTextArea info = new JTextArea();
 		info.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		info.setWrapStyleWord(true);
@@ -52,12 +55,14 @@ public class RecipePanel extends JPanel {
 		info_scroll.setBounds(846, 246, 500, 341);
 		add(info_scroll);
 		
+		//Get list of recipes
 		ArrayList<String> recipes = new ArrayList<String>();
 		for(String r: recipe_types) {
 			File f = new File("./src/images/"+r);
 			for(String s: f.list()) recipes.add(s.split(".txt")[0]);
 		}
 		
+		//Display recipe data
 		JList recipeList = new JList(recipes.toArray());
 		recipeList.setLayoutOrientation(JList.VERTICAL);
 		recipeList.setCellRenderer(new FoodListRenderer(new String[] {"final dish"}));
@@ -91,14 +96,15 @@ public class RecipePanel extends JPanel {
 		recipeList_scroll.setBounds(432, 246, 291, 341);
 		add(recipeList_scroll);
 		
+		//Title
 		JLabel Title = new JLabel("Recipe List");
 		Title.setForeground(Color.ORANGE);
-		//Title.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Title.setHorizontalAlignment(SwingConstants.CENTER);
 		Title.setBounds(598, 118, 400,87);
 		add(Title);
 		Title.setFont(titleFont);
 		
+		//Back button
 		JButton Back = new JButton("Back");
 		Back.addMouseListener(new MouseAdapter() {
 			@Override
